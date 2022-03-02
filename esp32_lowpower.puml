@@ -1,0 +1,39 @@
+@startuml
+
+component "ubirch-esp32-storage" as storage
+
+[examlpe-esp32-low-power] as elp
+[arduino-esp32] as arduino #red
+[ubirch-esp32-api-http] as api_http
+[ubirch-esp32-console] as esp32_console
+[ubirch-esp32-key-storage] as keystorage
+[ubirch-esp32-networking] as networking
+[ubirch-esp32-ota] as ota
+[msgpack-c] as msgpack
+[ubirch-mbed-nacl-cm0] as nacl #palegreen
+[ubirch-protocol] as protocol #palegreen
+
+url storage is [[https://github.com/ubirch/ubirch-esp32-storage]]
+url elp is [[https://github.com/ubirch/example-esp32-low-power]]
+url arduino is [[https://github.com/ubirch/arduino-esp32]]
+url api_http is [[https://github.com/ubirch/ubirch-esp32-api-http]]
+url esp32_console is [[https://github.com/ubirch/ubirch-esp32-console]]
+url keystorage is [[https://github.com/ubirch/ubirch-esp32-key-storage]]
+url networking is [[https://github.com/ubirch/ubirch-esp32-networking]]
+url ota is [[https://github.com/ubirch/ubirch-esp32-ota]]
+url msgpack is [[https://github.com/ubirch/msgpack-c]]
+url nacl is [[https://github.com/ubirch/ubirch-mbed-nacl-cm0]]
+url protocol is [[https://github.com/ubirch/ubirch-protocol]]
+
+
+nacl->elp
+protocol->elp
+elp <-left- arduino
+elp<-down-api_http
+elp<-down-esp32_console
+elp<-down-keystorage
+elp<-up-networking
+elp<-up-ota
+elp<-up-storage
+elp<-right-msgpack
+@enduml
